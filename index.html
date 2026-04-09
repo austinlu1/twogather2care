@@ -1,0 +1,552 @@
+<DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TwoGather2Care</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green:  #4a9b72;
+      --green-dark: #357a58;
+      --gold:   #e8a838;
+      --cream:  #fdf8f2;
+      --dark:   #2c2c2c;
+      --gray:   #6b6b6b;
+      --light:  #f4ede3;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: var(--dark);
+      background: var(--cream);
+      line-height: 1.7;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: white;
+      box-shadow: 0 2px 12px rgba(0,0,0,.08);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+    }
+
+    .nav-logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--green-dark);
+      text-decoration: none;
+      letter-spacing: -.3px;
+    }
+
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gray);
+      font-size: .95rem;
+      font-weight: 500;
+      transition: color .2s;
+    }
+
+    .nav-links a:hover { color: var(--green-dark); }
+
+    /* ── HERO ── */
+    #hero {
+      background: linear-gradient(135deg, #2d6a4f 0%, #40916c 50%, #74c69d 100%);
+      color: white;
+      text-align: center;
+      padding: 7rem 1.5rem 6rem;
+    }
+
+    #hero .tag {
+      display: inline-block;
+      background: rgba(255,255,255,.18);
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 999px;
+      padding: .3rem 1rem;
+      font-size: .85rem;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    #hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.25rem;
+    }
+
+    #hero h1 span { color: #b7e4c7; }
+
+    #hero p {
+      max-width: 600px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.15rem;
+      opacity: .9;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: .85rem 2.2rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: transform .15s, box-shadow .15s;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.18); }
+
+    .btn-primary   { background: white; color: var(--green-dark); }
+    .btn-secondary { background: var(--gold); color: white; margin-left: .75rem; }
+
+    /* ── SECTION BASE ── */
+    section { padding: 5rem 1.5rem; }
+
+    .container { max-width: 1060px; margin: 0 auto; }
+
+    .section-label {
+      display: inline-block;
+      font-size: .8rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: .6rem;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    .subtitle {
+      color: var(--gray);
+      max-width: 580px;
+      font-size: 1.05rem;
+      margin-bottom: 3rem;
+    }
+
+    /* ── MISSION ── */
+    #mission { background: white; }
+
+    .mission-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .mission-card {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      text-align: center;
+      border: 1px solid #eee;
+      transition: box-shadow .2s;
+    }
+
+    .mission-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,.08); }
+
+    .mission-card .icon {
+      font-size: 2.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .mission-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+
+    .mission-card p { color: var(--gray); font-size: .95rem; }
+
+    /* ── VOLUNTEER ── */
+    #volunteer { background: var(--light); }
+
+    .volunteer-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .volunteer-item {
+      background: white;
+      border-radius: 14px;
+      padding: 1.5rem;
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      border-left: 4px solid var(--green);
+      box-shadow: 0 2px 10px rgba(0,0,0,.05);
+    }
+
+    .volunteer-item .num {
+      background: var(--green);
+      color: white;
+      font-weight: 700;
+      border-radius: 50%;
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: .9rem;
+    }
+
+    .volunteer-item h4 { font-weight: 700; margin-bottom: .25rem; }
+    .volunteer-item p  { color: var(--gray); font-size: .9rem; }
+
+    /* ── FUNDRAISING ── */
+    #fundraising { background: white; }
+
+    .fundraising-banner {
+      background: linear-gradient(135deg, #e8a838, #f4c261);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      color: white;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+    }
+
+    .fundraising-banner h3 {
+      font-size: 1.7rem;
+      font-weight: 800;
+      margin-bottom: .5rem;
+    }
+
+    .fundraising-banner p { opacity: .9; max-width: 480px; }
+
+    .btn-white { background: white; color: var(--gold); font-weight: 700; }
+
+    /* ── GET INVOLVED ── */
+    #involved { background: var(--light); }
+
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      counter-reset: steps;
+    }
+
+    .step {
+      flex: 1 1 220px;
+      background: white;
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      position: relative;
+      box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    }
+
+    .step::before {
+      counter-increment: steps;
+      content: counter(steps);
+      position: absolute;
+      top: -14px;
+      left: 1.5rem;
+      background: var(--green-dark);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: .85rem;
+    }
+
+    .step h4 { font-weight: 700; margin-bottom: .4rem; margin-top: .25rem; }
+    .step p  { color: var(--gray); font-size: .92rem; }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: linear-gradient(135deg, #2d6a4f 0%, #40916c 100%);
+      color: white;
+      text-align: center;
+    }
+
+    #contact h2 { color: white; }
+    #contact .subtitle { color: rgba(255,255,255,.8); margin: 0 auto 2.5rem; }
+
+    .contact-cards {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1.25rem;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-card {
+      background: rgba(255,255,255,.12);
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 14px;
+      padding: 1.5rem 2rem;
+      min-width: 220px;
+    }
+
+    .contact-card .label {
+      font-size: .8rem;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      opacity: .7;
+      margin-bottom: .4rem;
+    }
+
+    .contact-card a {
+      color: #b7e4c7;
+      font-weight: 600;
+      text-decoration: none;
+      font-size: 1rem;
+      word-break: break-all;
+    }
+
+    .contact-card a:hover { text-decoration: underline; }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid white;
+      color: white;
+      padding: .8rem 2rem;
+    }
+
+    .btn-outline:hover { background: white; color: var(--green-dark); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #1b1b1b;
+      color: rgba(255,255,255,.5);
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: .88rem;
+    }
+
+    footer strong { color: rgba(255,255,255,.8); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      #hero { padding: 5rem 1.25rem 4rem; }
+      .btn-secondary { margin-left: 0; margin-top: .5rem; }
+      .fundraising-banner { text-align: center; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#hero">TwoGather2Care</a>
+    <ul class="nav-links">
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#volunteer">Volunteer</a></li>
+      <li><a href="#fundraising">Fundraising</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="tag">Student-Run Organization</div>
+    <h1>Bridging Generations,<br /><span>One Visit at a Time</span></h1>
+    <p>
+      TwoGather2Care connects student volunteers with nursing home residents
+      to bring joy, companionship, and meaningful activity to those who need it most.
+    </p>
+    <a href="#involved" class="btn btn-primary">Volunteer Now</a>
+    <a href="l.instagram.com/?u=https%3A%2F%2Flinktr.ee%2Ftwogather2care%3Futm_source%3Dig%26utm_medium%3Dsocial%26utm_content%3Dlink_in_bio%26fbclid%3DPAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnaIfkkRiyej3U4lw2fVkmYPZpjVtfjLEcaO-TB1fHFlk7y_MliqlxETAV_hY_aem_pk8hCnJRx8_i2_UgyvBIrg&e=AT5DbsV4p3AbuDw2NRvXSUAZqFwg_KeGICU9R_epB6m2W8vsIM0RVBwwmRzRnqylaqvuUCLDAplZtgcYy8jtE0e92dNFQQpBu1ozCM0xZA" target="_blank" rel="noopener" class="btn btn-secondary">Follow Us</a>
+  </section>
+
+  <!-- MISSION -->
+  <section id="mission">
+    <div class="container">
+      <span class="section-label">Our Mission</span>
+      <h2>Why We Show Up</h2>
+      <p class="subtitle">
+        Many elders in nursing homes face isolation and inactivity. We believe
+        students can change that — bringing energy, empathy, and community right to their door.
+      </p>
+      <div class="mission-grid">
+        <div class="mission-card">
+          <div class="icon">🧠</div>
+          <h3>Mental Wellness</h3>
+          <p>Conversations, games, and social interaction help combat loneliness and cognitive decline.</p>
+        </div>
+        <div class="mission-card">
+          <div class="icon">💪</div>
+          <h3>Physical Activity</h3>
+          <p>Light exercises, dance, and movement sessions keep residents active and energized.</p>
+        </div>
+        <div class="mission-card">
+          <div class="icon">🎉</div>
+          <h3>Joyful Events</h3>
+          <p>Holiday celebrations, arts & crafts, music sessions, and trivia nights that everyone looks forward to.</p>
+        </div>
+        <div class="mission-card">
+          <div class="icon">🤝</div>
+          <h3>Real Connection</h3>
+          <p>Building genuine relationships between students and elders — not just a one-time visit.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VOLUNTEER -->
+  <section id="volunteer">
+    <div class="container">
+      <span class="section-label">What You'll Do</span>
+      <h2>How Volunteers Make a Difference</h2>
+      <p class="subtitle">
+        No experience required — just a willingness to show up and care.
+        Here's what a typical visit looks like:
+      </p>
+      <div class="volunteer-list">
+        <div class="volunteer-item">
+          <div class="num">1</div>
+          <div>
+            <h4>Recreational Activities</h4>
+            <p>Lead board games, card games, puzzles, or craft sessions that residents can enjoy at their own pace.</p>
+          </div>
+        </div>
+        <div class="volunteer-item">
+          <div class="num">2</div>
+          <div>
+            <h4>Group Exercise & Movement</h4>
+            <p>Guide gentle chair yoga, stretching, or light dance routines tailored to residents' abilities.</p>
+          </div>
+        </div>
+        <div class="volunteer-item">
+          <div class="num">3</div>
+          <div>
+            <h4>Conversation & Companionship</h4>
+            <p>Simply sit, listen, and share stories. Your presence alone is enormously meaningful.</p>
+          </div>
+        </div>
+        <div class="volunteer-item">
+          <div class="num">4</div>
+          <div>
+            <h4>Special Events & Celebrations</h4>
+            <p>Help plan and run holiday parties, birthday events, and seasonal themed activities.</p>
+          </div>
+        </div>
+        <div class="volunteer-item">
+          <div class="num">5</div>
+          <div>
+            <h4>Music & Arts</h4>
+            <p>Sing-alongs, music listening sessions, painting, and creative expression for all skill levels.</p>
+          </div>
+        </div>
+        <div class="volunteer-item">
+          <div class="num">6</div>
+          <div>
+            <h4>Fundraising Support</h4>
+            <p>Help organize drives and events that fund supplies, activities, and facility improvements.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FUNDRAISING -->
+  <section id="fundraising">
+    <div class="container">
+      <span class="section-label">Fundraising</span>
+      <h2>Support the Cause</h2>
+      <p class="subtitle">
+        Every dollar raised goes directly toward activities, supplies, and events
+        that brighten the lives of nursing home residents.
+      </p>
+      <div class="fundraising-banner">
+        <div>
+          <h3>Help Us Do More</h3>
+          <p>
+            From art supplies and game sets to event decorations and group outings —
+            your support makes meaningful programming possible. Get involved with our
+            fundraising events or donate directly.
+          </p>
+        </div>
+        <a href="mailto:twogather2care@gmail.com" class="btn btn-white">Get Involved</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- GET INVOLVED -->
+  <section id="involved">
+    <div class="container">
+      <span class="section-label">Get Involved</span>
+      <h2>Ready to Volunteer?</h2>
+      <p class="subtitle">
+        Joining is simple. Here's how to get started with TwoGather2Care:
+      </p>
+      <div class="steps">
+        <div class="step">
+          <h4>Reach Out</h4>
+          <p>Email us at twogather2care@gmail.com to express your interest and ask any questions.</p>
+        </div>
+        <div class="step">
+          <h4>Get Oriented</h4>
+          <p>Attend a short orientation to learn about our nursing home partners, expectations, and safety guidelines.</p>
+        </div>
+        <div class="step">
+          <h4>Schedule a Visit</h4>
+          <p>Sign up for upcoming volunteer sessions that fit your schedule — flexible timing available.</p>
+        </div>
+        <div class="step">
+          <h4>Show Up & Care</h4>
+          <p>Arrive, connect with residents, and make a real difference in someone's day.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <span class="section-label" style="color:#b7e4c7;">Contact Us</span>
+      <h2>We'd Love to Hear From You</h2>
+      <p class="subtitle">
+        Questions about volunteering, partnerships, or fundraising?
+        Reach out — we're a friendly student team and happy to connect.
+      </p>
+      <div class="contact-cards">
+        <div class="contact-card">
+          <div class="label">Email</div>
+          <a href="mailto:twogather2care@gmail.com">twogather2care@gmail.com</a>
+        </div>
+        <div class="contact-card">
+          <div class="label">Links & Social</div>
+          <a href="l.instagram.com/?u=https%3A%2F%2Flinktr.ee%2Ftwogather2care%3Futm_source%3Dig%26utm_medium%3Dsocial%26utm_content%3Dlink_in_bio%26fbclid%3DPAZXh0bgNhZW0CMTEAc3J0YwZhcHBfaWQMMjU2MjgxMDQwNTU4AAGnaIfkkRiyej3U4lw2fVkmYPZpjVtfjLEcaO-TB1fHFlk7y_MliqlxETAV_hY_aem_pk8hCnJRx8_i2_UgyvBIrg&e=AT5DbsV4p3AbuDw2NRvXSUAZqFwg_KeGICU9R_epB6m2W8vsIM0RVBwwmRzRnqylaqvuUCLDAplZtgcYy8jtE0e92dNFQQpBu1ozCM0xZA" target="_blank" rel="noopener">LinkTree / Instagram</a>
+        </div>
+      </div>
+      <a href="mailto:twogather2care@gmail.com" class="btn btn-outline">Send Us a Message</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p><strong>TwoGather2Care</strong> &mdash; A student-run organization dedicated to elder care &amp; community connection.</p>
+    <p style="margin-top:.5rem;">© 2025 TwoGather2Care. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
