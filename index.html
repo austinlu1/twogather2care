@@ -1,4 +1,4 @@
-<DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -41,10 +41,22 @@
     }
 
     .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 40px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    .nav-logo span {
       font-size: 1.25rem;
       font-weight: 700;
       color: var(--green-dark);
-      text-decoration: none;
       letter-spacing: -.3px;
     }
 
@@ -214,8 +226,31 @@
     .volunteer-item h4 { font-weight: 700; margin-bottom: .25rem; }
     .volunteer-item p  { color: var(--gray); font-size: .9rem; }
 
+    /* ── GALLERY ── */
+    #gallery { background: white; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.1);
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .gallery-grid img:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(0,0,0,.15);
+    }
+
     /* ── FUNDRAISING ── */
-    #fundraising { background: white; }
+    #fundraising { background: var(--light); }
 
     .fundraising-banner {
       background: linear-gradient(135deg, #e8a838, #f4c261);
@@ -240,7 +275,7 @@
     .btn-white { background: white; color: var(--gold); font-weight: 700; }
 
     /* ── GET INVOLVED ── */
-    #involved { background: var(--light); }
+    #involved { background: white; }
 
     .steps {
       display: flex;
@@ -251,7 +286,7 @@
 
     .step {
       flex: 1 1 220px;
-      background: white;
+      background: var(--cream);
       border-radius: 16px;
       padding: 2rem 1.5rem;
       position: relative;
@@ -356,10 +391,14 @@
 
   <!-- NAV -->
   <nav>
-    <a class="nav-logo" href="#hero">TwoGather2Care</a>
+    <a class="nav-logo" href="#hero">
+      <img src="TwoGather2Care.png" alt="TwoGather2Care logo" />
+      <span>TwoGather2Care</span>
+    </a>
     <ul class="nav-links">
       <li><a href="#mission">Mission</a></li>
       <li><a href="#volunteer">Volunteer</a></li>
+      <li><a href="#gallery">Gallery</a></li>
       <li><a href="#fundraising">Fundraising</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -391,11 +430,6 @@
           <div class="icon">🧠</div>
           <h3>Mental Wellness</h3>
           <p>Conversations, games, and social interaction help combat loneliness and cognitive decline.</p>
-        </div>
-        <div class="mission-card">
-          <div class="icon">💪</div>
-          <h3>Physical Activity</h3>
-          <p>Light exercises, dance, and movement sessions keep residents active and energized.</p>
         </div>
         <div class="mission-card">
           <div class="icon">🎉</div>
@@ -431,38 +465,45 @@
         <div class="volunteer-item">
           <div class="num">2</div>
           <div>
-            <h4>Group Exercise & Movement</h4>
-            <p>Guide gentle chair yoga, stretching, or light dance routines tailored to residents' abilities.</p>
-          </div>
-        </div>
-        <div class="volunteer-item">
-          <div class="num">3</div>
-          <div>
             <h4>Conversation & Companionship</h4>
             <p>Simply sit, listen, and share stories. Your presence alone is enormously meaningful.</p>
           </div>
         </div>
         <div class="volunteer-item">
-          <div class="num">4</div>
+          <div class="num">3</div>
           <div>
             <h4>Special Events & Celebrations</h4>
             <p>Help plan and run holiday parties, birthday events, and seasonal themed activities.</p>
           </div>
         </div>
         <div class="volunteer-item">
-          <div class="num">5</div>
+          <div class="num">4</div>
           <div>
-            <h4>Music & Arts</h4>
-            <p>Sing-alongs, music listening sessions, painting, and creative expression for all skill levels.</p>
+            <h4>Arts & Crafts</h4>
+            <p>Painting, beading, and creative expression sessions that spark joy and creativity in residents.</p>
           </div>
         </div>
         <div class="volunteer-item">
-          <div class="num">6</div>
+          <div class="num">5</div>
           <div>
             <h4>Fundraising Support</h4>
             <p>Help organize drives and events that fund supplies, activities, and facility improvements.</p>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="container">
+      <span class="section-label">Our Events</span>
+      <h2>Moments That Matter</h2>
+      <p class="subtitle">A glimpse into the events and activities we've shared with residents.</p>
+      <div class="gallery-grid">
+        <img src="event.png" alt="TwoGather2Care event" />
+        <img src="beads.png" alt="Beading activity with residents" />
+        <img src="dance.webp" alt="Dance event with residents" />
       </div>
     </div>
   </section>
@@ -480,9 +521,9 @@
         <div>
           <h3>Help Us Do More</h3>
           <p>
-            From art supplies and game sets to event decorations and group outings —
+            From art supplies and game sets to event decorations —
             your support makes meaningful programming possible. Get involved with our
-            fundraising events or donate directly.
+            fundraising events or reach out to donate directly.
           </p>
         </div>
         <a href="mailto:twogather2care@gmail.com" class="btn btn-white">Get Involved</a>
@@ -505,7 +546,7 @@
         </div>
         <div class="step">
           <h4>Get Oriented</h4>
-          <p>Attend a short orientation to learn about our nursing home partners, expectations, and safety guidelines.</p>
+          <p>Attend a short orientation to learn about our nursing home partners, expectations, and guidelines.</p>
         </div>
         <div class="step">
           <h4>Schedule a Visit</h4>
